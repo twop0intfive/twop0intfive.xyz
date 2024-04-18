@@ -1,7 +1,8 @@
 body {
-    background-color: #111; /* Dark background */
-    color: #00FF00; /* '80s green' text */
-    font-family: 'Courier New', Courier, monospace;  /* Retro font */
+    background-color: #111; /* Dark cyberpunk base */
+    background-image: linear-gradient(to right, hotpink 30%, turquoise 70%); /* Bold 90s gradient overlay */ 
+    color: #00FF00; /* Classic 'Matrix' green */
+    font-family: 'Courier New', Courier, monospace;  
     text-align: center;
     margin: 0;
     padding: 2em;
@@ -9,43 +10,53 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    min-height: 100vh; /* Ensure page covers full viewport height */
+    min-height: 100vh; 
 }
 
 .container {
     max-width: 600px;
     width: 100%;
+    background-color: rgba(0,0,0, 0.5); /* Semi-transparent container against the gradient */
+    padding: 20px;
+    border-radius: 10px; 
+    box-shadow: 5px 5px 10px rgba(0,0,0,0.7); /* Subtle 3D effect */
 }
 
-.profile-image {
+.profile-image { /* Unchanged from before */
     max-width: 200px;
     height: auto;
-    border-radius: 50%;  /* Circular profile picture */
+    border-radius: 50%;
 }
 
-.username {
+.username { 
     font-size: 2.5em;
     margin-top: 1em;
+    font-weight: bold;
+    text-transform: uppercase; /* 90s style! */
+    color: hotpink; /* Bold and vibrant */
+    text-shadow: 2px 2px 5px #000;  
 }
 
-.bio {
+.bio { 
     margin: 1em 0; 
+    color: #999; /* Slightly less intense text */
 }
 
 .beacons-button {
-    background-color: #000;
-    color: #00FF00;
-    border: 3px solid #00FF00;
+    background: linear-gradient(#00FF00, #008800); /* Cyberpunk green gradient */
+    color: #000; 
+    border: 3px solid #000; /* Ditch the 90s bevel for a sleek border */
     padding: 15px 30px;
     text-decoration: none;
     font-size: 1.2em;
+    border-radius: 5px;  /* Subtle rounding */
     cursor: pointer;
-    transition: background-color 0.3s ease; /* Smooth hover effect */
+    transition: background-color 0.3s ease, box-shadow 0.3s ease; 
 }
 
 .beacons-button:hover {
-    background-color: #00FF00;
-    color: #000;
+    background-color: #008800; /* Darker on hover */
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.5); 
 }
 
 footer {
