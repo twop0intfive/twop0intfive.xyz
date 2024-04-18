@@ -32,8 +32,8 @@ body {
     font-size: 2.5em;
     margin-top: 1em;
     font-weight: bold;
-    text-transform: uppercase; /* 90s style! */
-    color: hotpink; /* Bold and vibrant */
+    text-transform: lowercase; /* uppercase is 90s style, but lowercase is mine */
+    color: brightgreen; /* Bold and vibrant */
     text-shadow: 2px 2px 5px #000;  
 }
 
