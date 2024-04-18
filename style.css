@@ -1,15 +1,15 @@
 body {
-    background-color: #111; /* Dark cyberpunk base */
-    background-image: linear-gradient(to right, hotpink 30%, turquoise 70%); /* Bold 90s gradient overlay */ 
-    color: #00FF00; /* Classic 'Matrix' green */
+    background-color: #111; 
+    background-image: linear-gradient(to right, #007ba7 30%, #a72c00 70%); /* Updated colors */
+    color: #00FF00; 
     font-family: 'Courier New', Courier, monospace;  
     text-align: center;
     margin: 0;
     padding: 2em;
-    display: flex;
+    display: flex; 
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    align-items: center; /* Center horizontally */
+    justify-content: center; /* Center vertically */
     min-height: 100vh; 
 }
 
