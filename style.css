@@ -1,6 +1,6 @@
 body {
     background-color: #111; 
-    background-image: linear-gradient(to right, #0047ab 30%, #fffff 70%); /* Updated colors */
+    background-image: linear-gradient(to right, #0047ab 30%, #ffffe 70%); /* Updated colors */
     color: #00FF00; 
     font-family: 'Courier New', Courier, monospace;  
     text-align: center;
