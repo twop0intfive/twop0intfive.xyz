@@ -1,0 +1,35 @@
+body {
+  background: linear-gradient(45deg, #00bfff, #0047ab, #fff);
+  background-size: 400% 400%;
+  animation: gradientAnimation 10s ease infinite;
+  color: #fff;
+}
+
+@keyframes gradientAnimation {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+.s1 {
+	text-transform: uppercase;
+}
+/*
+.btn_img_1 {
+background-image: linear-gradient(rgba(0, 0, 0, 0.527),rgba(0, 0, 0, 0.5)) ,url("../img/btn_revengeday.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  color: #fff;
+}
+.btn_img_2 {
+background-image: linear-gradient(rgba(0, 0, 0, 0.527),rgba(0, 0, 0, 0.5)) ,url("../img/btn_nightcitycafe.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  color: #fff;
+}
+.btn_img_3 {
+background-image: linear-gradient(rgba(0, 0, 0, 0.527),rgba(0, 0, 0, 0.5)) ,url("../img/animation.gif");
+  background-size: cover;
+  background-repeat: no-repeat;
+  color: #fff;
+}
+*/
