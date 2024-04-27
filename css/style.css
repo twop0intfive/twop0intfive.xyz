@@ -41,7 +41,7 @@ body {
     text-align: center;
     text-decoration: none;
     border-radius: 15px;
-    font-weight: bold;
+    font-weight: 300; /* Make the font lighter *
     transition: transform 0.2s ease;
 }
 
