@@ -1,0 +1,60 @@
+:root {
+    --primary-color: #f7f7f7;
+    --secondary-color: #888;
+    --button-hover-transform: translateY(-3px);
+}
+
+/* Link to Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+
+body {
+    /* Apply Open Sans to all elements */
+    font-family: 'Open Sans', sans-serif;
+    text-align: center;
+    padding: 20px;
+    background: var(--primary-color);
+    font-weight: 300; /* Make the font lighter */
+}
+
+.profile p {
+    display: block;
+    width: 80%;
+    max-width: 500px;
+    margin: 10px auto;
+    padding: 15px;
+    text-align: center;
+    transition: transform 0.2s ease;
+}
+
+.profile img {
+    max-width: 150px;
+    border-radius: 50%;
+    margin: 20px;
+}
+
+.link-button {
+    display: block;
+    width: 80%;
+    max-width: 500px;
+    margin: 10px auto;
+    padding: 15px;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 15px;
+    font-weight: 300; /* Make the font lighter *
+    transition: transform 0.2s ease;
+}
+
+.link-button:hover {
+    transform: var(--button-hover-transform);
+}
+
+.footer-text {
+    margin-top: 50px;
+    font-size: 0.75em;
+    color: var(--secondary-color);
+}
+
+.fa {
+    margin-right: 8px;
+}
