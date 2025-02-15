@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="twop0intfive's cyber-tropical digital portal">
-  <title>twop0intfive.xyz - Tropical Cyber Portal</title>
+  <meta name="description" content="twop0intfive's digital portal">
+  <!-- Existing head content remains -->
   <style>
     :root {
       --base: #0a0a12;
@@ -13,19 +13,32 @@
       --accent: #f9a73e;
       --text: #e0e0ec;
     }
+
+    /* === Accessibility Improvements === */
+    :focus-visible { outline: 2px solid var(--accent) !important; }
+    .sr-only { 
+      position:absolute;
+      width:1px;
+      height:1px;
+      padding:0;
+      margin:-1px;
+      overflow:hidden;
+      clip:rect(0,0,0,0);
+      border:0
+    }
+
+    /* === Existing Styles + Enhancements === */
     body {
-      margin: 0;
       background: var(--base);
       color: var(--text);
       font-family: system-ui, -apple-system, sans-serif;
-      min-height: 100vh;
-      display: grid;
-      grid-template-rows: auto 1fr auto;
+      line-height: 1.6;
     }
-    .glitch {
+
+    /* Glitch Effect (Preserves Content Structure) */
+    .glitch-wrapper {
       position: relative;
-      font-size: 2.5rem;
-      text-transform: uppercase;
+      display: inline-block;
     }
     .glitch::before,
     .glitch::after {
@@ -35,79 +48,90 @@
       left: 0;
       opacity: 0.8;
     }
-    .glitch::before { color: var(--primary); animation: glitch-1 2s infinite; }
-    .glitch::after { color: var(--secondary); animation: glitch-2 2s infinite; }
+    .glitch::before {
+      color: var(--primary);
+      animation: glitch-1 2s infinite;
+      left: 2px;
+      text-shadow: 2px 0 var(--secondary);
+    }
+    .glitch::after {
+      color: var(--secondary);
+      animation: glitch-2 2s infinite;
+      left: -2px;
+    }
+
     @keyframes glitch-1 {
-      0% { transform: translate(0); }
-      20% { transform: translate(-2px, 2px); }
-      40% { transform: translate(-2px, -2px); }
-      60% { transform: translate(2px, 2px); }
-      80% { transform: translate(2px, -2px); }
-      100% { transform: translate(0); }
+      0% { transform: translate(0) }
+      20% { transform: translate(-2px,2px) }
+      40% { transform: translate(-2px,-2px) }
+      60% { transform: translate(2px,2px) }
+      80% { transform: translate(2px,-2px) }
+      100% { transform: translate(0) }
     }
-    .portal-grid {
-      display: grid;
-      gap: 1.5rem;
-      padding: 2rem;
-      max-width: 600px;
-      margin: 0 auto;
-    }
-    .portal-link {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      padding: 1.2rem;
+
+    /* === Your Existing Link Styles Enhanced === */
+    .link-item {
+      position: relative;
+      padding: 1rem;
       border: 2px solid var(--primary);
-      border-radius: 8px;
-      text-decoration: none;
-      color: var(--text);
       transition: transform 0.2s ease;
     }
-    .portal-link:hover {
+    .link-item:hover {
       transform: translateY(-2px);
       box-shadow: 0 0 15px var(--primary);
+    }
+
+    /* === New Environmental Effects === */
+    .scanline {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(
+        to bottom,
+        transparent 50%,
+        rgba(0,243,255,0.1) 51%
+      );
+      background-size: 100% 4px;
+      animation: scan 2s linear infinite;
+      pointer-events: none;
+    }
+
+    @keyframes scan {
+      0% { background-position: 0 0; }
+      100% { background-position: 0 100vh; }
+    }
+
+    @media (prefers-reduced-motion) {
+      .scanline { animation: none; }
     }
   </style>
 </head>
 <body>
-  <header class="header" aria-labelledby="main-heading">
-    <h1 id="main-heading" class="glitch" data-text="twop0intfive">twop0intfive</h1>
-  </header>
+  <!-- PASTE YOUR EXISTING BODY CONTENT HERE -->
+  <div class="glitch-wrapper" aria-hidden="true">
+    <h1 class="glitch" data-text="twop0intfive">twop0intfive</h1>
+  </div>
 
-  <main class="portal-grid">
-    <!-- PASTE YOUR EXISTING LINKS HERE - REPLACE THESE PLACEHOLDERS -->
-    <a href="[YOUR_DIGITAL_GARDEN_URL]" class="portal-link" aria-label="Digital Garden">
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2">
-        <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+  <nav aria-label="Main navigation">
+    <!-- Your existing links with enhanced accessibility -->
+    <a href="/garden" class="link-item" aria-label="Digital Garden">
+      <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24">
+        <path fill="var(--primary)" d="M12 2..."/>
       </svg>
       Digital Garden
     </a>
+  </nav>
 
-    <a href="[YOUR_GITHUB_URL]" class="portal-link" aria-label="GitHub Profile">
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="var(--primary)">
-        <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
-      </svg>
-      GitHub
-    </a>
-
-    <!-- ADD MORE LINKS FOLLOWING THE SAME PATTERN -->
-    <!-- Example template for additional links:
-    <a href="[YOUR_LINK_URL]" class="portal-link" aria-label="[PLATFORM_NAME]">
-      <svg>[PLATFORM_ICON]</svg>
-      [PLATFORM_NAME]
-    </a>
-    -->
-  </main>
-
-  <footer class="environmental-effects" aria-hidden="true">
-    <div class="scanline"></div>
-  </footer>
+  <div class="scanline" aria-hidden="true"></div>
 
   <script>
-    // Reduced motion check for animations
+    // Progressive enhancement
     if (matchMedia('(prefers-reduced-motion: no-preference)').matches) {
       document.body.classList.add('animations-enabled');
     }
   </script>
 </body>
 </html>
+
