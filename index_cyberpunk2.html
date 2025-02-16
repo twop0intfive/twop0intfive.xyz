@@ -12,7 +12,6 @@
       --secondary: #ff4d9e;
       --accent: #f9a73e;
       --text: #e0e0ec;
-      --min-view: min(100vh, 100vw);
       --content-size: clamp(300px, 80vmin, 800px);
     }
 
@@ -65,6 +64,13 @@
       pointer-events: none;
       animation: flicker 0.12s infinite;
       mix-blend-mode: color-burn;
+      background-image: repeating-linear-gradient(
+        0deg,
+        rgba(0, 0, 0, 0.3) 0px,
+        rgba(0, 0, 0, 0.3) 1px,
+        transparent 1px,
+        transparent 3px
+      );
     }
 
     .scanline {
@@ -89,12 +95,6 @@
       100% { bottom: -150px; }
     }
 
-    /* Add phosphor glow */
-    .link-button {
-      text-shadow: 0 0 2px var(--primary);
-    }
-
-    /* Add screen curvature effect */
     body::before {
       content: '';
       position: fixed;
@@ -107,17 +107,98 @@
       z-index: 2;
     }
 
-    /* Add VHS-style horizontal lines */
-    .crt::after {
-      background-image: repeating-linear-gradient(
-        0deg,
-        rgba(0, 0, 0, 0.3) 0px,
-        rgba(0, 0, 0, 0.3) 1px,
-        transparent 1px,
-        transparent 3px
-      );
+    .glitch {
+      position: relative;
+      font-size: clamp(2rem, 8vmin, 4rem);
+      text-transform: uppercase;
     }
 
+    .glitch::before,
+    .glitch::after {
+      content: attr(data-text);
+      position: absolute;
+      top: 0;
+      left: 0;
+      opacity: 0.8;
+    }
+
+    .glitch::before { color: var(--primary); animation: glitch-1 2s infinite; }
+    .glitch::after { color: var(--secondary); animation: glitch-2 2s infinite; }
+
+    @keyframes glitch-1 {
+      0% { transform: translate(0); }
+      20% { transform: translate(-2px, 2px); }
+      40% { transform: translate(-2px, -2px); }
+      60% { transform: translate(2px, 2px); }
+      80% { transform: translate(2px, -2px); }
+      100% { transform: translate(0); }
+    }
+
+    .portal-grid {
+      display: grid;
+      gap: clamp(1rem, 2vmax, 2rem);
+      width: var(--content-size);
+      max-width: 90vw;
+      margin: auto;
+      padding: 2rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .link-button {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: clamp(0.8rem, 2vmin, 1.2rem);
+      border: 2px solid var(--primary);
+      border-radius: 8px;
+      text-decoration: none;
+      color: var(--text);
+      transition: transform 0.2s ease;
+      font-size: clamp(1rem, 3vmin, 1.2rem);
+      text-shadow: 0 0 2px var(--primary);
+    }
+
+    .link-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 15px var(--primary);
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .small-text {
+      font-size: 0.8rem;
+      text-align: center;
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 1rem;
+    }
+
+    @media (prefers-reduced-motion) {
+      .crt::after, .scanline {
+        animation: none !important;
+      }
+    }
+
+    @media (min-aspect-ratio: 21/9) {
+      .portal-grid {
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      }
+      h2 {
+        grid-column: 1 / -1;
+      }
+    }
+
+    @media (max-aspect-ratio: 3/4) {
+      .portal-grid {
+        width: 95vw;
+      }
+    }
   </style>
 </head>
 <body class="crt">
