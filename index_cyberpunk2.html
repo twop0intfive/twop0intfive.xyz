@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <meta name="description" content="𝘁𝘄𝗼𝗽𝟬𝗶𝗻𝘁𝗳𝗶𝘃𝗲の物語's cyber-tropical digital portal">
-  <title>𝘁𝘄𝗼𝗽𝟬𝗶𝗻𝘁𝗳𝗶𝘃𝗲の物語</title>
+  <meta name="description" content="twop0intfive's cyber-tropical digital portal">
+  <title>twop0intfive.xyz - Tropical Cyber Portal</title>
   <style>
     :root {
       --base: #0a0a12;
@@ -25,9 +25,10 @@
       grid-template-rows: auto 1fr auto;
       place-items: center;
       overflow-x: hidden;
+      text-align: center;
     }
 
-    /* Optimized CRT Effects */
+    /* CRT Effects */
     .crt::before {
       content: " ";
       display: block;
@@ -70,6 +71,8 @@
       position: relative;
       font-size: clamp(2rem, 8vmin, 4rem);
       text-transform: uppercase;
+      text-align: center;
+      width: 100%;
     }
 
     .glitch::before,
@@ -77,7 +80,8 @@
       content: attr(data-text);
       position: absolute;
       top: 0;
-      left: 0;
+      left: 50%;
+      transform: translateX(-50%);
       opacity: 0.8;
     }
 
@@ -85,12 +89,12 @@
     .glitch::after { color: var(--secondary); animation: glitch-2 2s infinite; }
 
     @keyframes glitch-1 {
-      0% { transform: translate(0); }
-      20% { transform: translate(-2px, 2px); }
-      40% { transform: translate(-2px, -2px); }
-      60% { transform: translate(2px, 2px); }
-      80% { transform: translate(2px, -2px); }
-      100% { transform: translate(0); }
+      0% { transform: translateX(-50%); }
+      20% { transform: translateX(calc(-50% - 2px)) translateY(2px); }
+      40% { transform: translateX(calc(-50% - 2px)) translateY(-2px); }
+      60% { transform: translateX(calc(-50% + 2px)) translateY(2px); }
+      80% { transform: translateX(calc(-50% + 2px)) translateY(-2px); }
+      100% { transform: translateX(-50%); }
     }
 
     .portal-grid {
@@ -102,11 +106,13 @@
       padding: 2rem;
       position: relative;
       z-index: 2;
+      justify-items: center;
     }
 
     .link-button {
       display: flex;
       align-items: center;
+      justify-content: center;
       gap: 1rem;
       padding: clamp(0.8rem, 2vmin, 1.2rem);
       border: 2px solid var(--primary);
@@ -115,7 +121,8 @@
       color: var(--text);
       transition: transform 0.2s ease;
       font-size: clamp(1rem, 3vmin, 1.2rem);
-      background-color: var(--button-bg);
+      width: 100%;
+      text-align: center;
     }
 
     .link-button:hover {
@@ -128,6 +135,7 @@
       padding: 2rem;
       position: relative;
       z-index: 2;
+      width: 100%;
     }
 
     .small-text {
@@ -136,6 +144,12 @@
       max-width: 600px;
       margin: 0 auto;
       padding: 1rem;
+    }
+
+    h2 {
+      width: 100%;
+      text-align: center;
+      margin: 1.5rem 0;
     }
 
     @media (prefers-reduced-motion) {
@@ -165,11 +179,10 @@
   
   <div class="aspect-container">
     <header class="header" aria-labelledby="main-heading">
-      <h1 id="main-heading" class="glitch" data-text="𝘁𝘄𝗼𝗽𝟬𝗶𝗻𝘁𝗳𝗶𝘃𝗲の物語">𝘁𝘄𝗼𝗽𝟬𝗶𝗻𝘁𝗳𝗶𝘃𝗲の物語</h1>
+      <h1 id="main-heading" class="glitch" data-text="twop0intfive">twop0intfive</h1>
     </header>
 
     <main id="main-content">
-      <!-- [English Content Section - Same as Previous] -->
       <section id="content-en" lang="en">
         <h2>Contact (DM, email)</h2>
         <a href="https://www.twop0intfive.xyz/contact.html" target="_self" class="link-button" style="background-color: #3A76F0; color: #FFFFFF;" rel="me">
@@ -219,7 +232,6 @@
         </a>
       </section>
 
-      <!-- [Spanish Content Section - Same as Previous] -->
       <section id="content-es" lang="es" style="display: none;">
         <h2>contactar (md, email)</h2>
         <a href="https://www.twop0intfive.xyz/contact.html" target="_self" class="link-button" style="background-color: #3A76F0; color: #FFFFFF;" rel="me">
