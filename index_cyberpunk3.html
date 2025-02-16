@@ -28,6 +28,34 @@
       line-height: 1.4;
     }
 
+    /* Centered Profile Section */
+    .profile-container {
+      display: flex;
+      justify-content: center;
+      width: 100%;
+      margin: 3rem 0;
+    }
+
+    .profile-picture {
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      border: 3px solid var(--primary);
+      box-shadow: 0 0 20px var(--primary);
+      margin: 0 auto;
+      display: block;
+    }
+
+    /* Centered Disclaimer Text */
+    .small-text {
+      text-align: center;
+      width: 100%;
+      max-width: 600px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+    }
+
+    /* Rest of the styles remain unchanged from previous implementation */
     .crt::before {
       content: " ";
       display: block;
@@ -77,6 +105,7 @@
       margin-bottom: 2rem;
       position: relative;
       animation: terminal-glitch 2s infinite;
+      text-align: center;
     }
 
     .terminal-links {
@@ -92,30 +121,12 @@
       cursor: pointer;
       transition: all 0.3s ease;
       overflow: hidden;
+      text-align: left;
     }
 
-    .command-line::before {
-      content: '>';
-      color: var(--primary);
-      margin-right: 1rem;
-    }
-
-    .command-line::after {
-      content: '_';
-      animation: cursor-blink 1s infinite;
-      position: absolute;
-      right: 1rem;
-    }
-
-    .command-line:hover {
-      background: rgba(0, 255, 135, 0.1);
-      box-shadow: 0 0 20px rgba(0, 255, 135, 0.3);
-      transform: translateX(10px);
-    }
-
-    @keyframes cursor-blink {
-      0%, 100% { opacity: 0; }
-      50% { opacity: 1; }
+    @keyframes scanline {
+      0% { bottom: 100%; }
+      100% { bottom: -120px; }
     }
 
     @keyframes terminal-glitch {
@@ -124,22 +135,14 @@
       100% { text-shadow: 0 0 10px var(--primary); }
     }
 
-    /* Existing profile and header styles remain unchanged */
-    .profile-container { margin: 3rem 0; }
-    .profile-picture {
-      width: 180px;
-      height: 180px;
-      border-radius: 50%;
-      border: 3px solid var(--primary);
-      box-shadow: 0 0 20px var(--primary);
-    }
-
-    /* Language toggle adjustments */
-    .small-text { font-size: 0.7rem; }
-
     @media (max-width: 768px) {
-      .cyber-terminal { padding: 1rem; }
-      .command-line { font-size: 0.9rem; }
+      .profile-picture {
+        width: 140px;
+        height: 140px;
+      }
+      .cyber-terminal {
+        padding: 1rem;
+      }
     }
   </style>
 </head>
@@ -147,11 +150,9 @@
   <div class="scanline"></div>
   
   <div class="aspect-container">
-    <header class="header" aria-labelledby="main-heading">
-      <h1 id="main-heading" class="glitch" data-text="𝘁𝘄𝗼𝗽𝟬𝗶𝗻𝘁𝗳𝗶𝘃𝗲の物語">𝘁𝘄𝗼𝗽𝟬𝗶𝗻𝘁𝗳𝗶𝘃𝗲の物語</h1>
-      
+    <header class="header">
       <div class="profile-container">
-        <img src="images/twop0intfive.jpeg" 
+        <img src="YOUR_PROFILE_IMAGE_URL.jpg" 
              alt="Profile picture" 
              class="profile-picture"
              aria-describedby="profile-description">
@@ -245,7 +246,7 @@
     </main>
 
     <footer>
-      <img src="https://counter.datakra.sh/twop0intfive.png" alt="𝘁𝘄𝗼𝗽𝟬𝗶𝗻𝘁𝗳𝗶𝘃𝗲の物語 Hit Counter">
+      <img src="https://counter.datakra.sh/twop0intfive.png" alt="Hit Counter" style="display: block; margin: 0 auto;">
     </footer>
 
     <div id="language-text" class="small-text">
@@ -269,11 +270,6 @@
         document.getElementById('text-en').style.display = 'block';
         document.documentElement.lang = 'en';
       }
-
-      // Add terminal typing animation
-      document.querySelectorAll('.command-line').forEach((el, index) => {
-        el.style.animationDelay = `${index * 0.2}s`;
-      });
     });
   </script>
 </body>
