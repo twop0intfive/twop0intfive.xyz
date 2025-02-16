@@ -27,7 +27,7 @@
       overflow-x: hidden;
     }
 
-    /* Enhanced CRT Effects */
+    /* Optimized CRT Effects */
     .crt::before {
       content: " ";
       display: block;
@@ -37,74 +37,33 @@
       bottom: 0;
       right: 0;
       background: 
-        linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.4) 50%),
-        linear-gradient(90deg, rgba(255, 0, 0, 0.1), rgba(0, 255, 0, 0.06), rgba(0, 0, 255, 0.1));
+        linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.1) 50%),
+        linear-gradient(90deg, rgba(255, 0, 0, 0.04), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.04));
       z-index: 1;
-      background-size: 100% 3px, 4px 100%;
+      background-size: 100% 2px, 3px 100%;
       pointer-events: none;
-    }
-
-    @keyframes flicker {
-      0% { opacity: 0.9; }
-      50% { opacity: 0.7; }
-      100% { opacity: 0.9; }
-    }
-
-    .crt::after {
-      content: " ";
-      display: block;
-      position: fixed;
-      top: 0;
-      left: 0;
-      bottom: 0;
-      right: 0;
-      background: rgba(18, 16, 16, 0.2);
-      opacity: 0.6;
-      z-index: 1;
-      pointer-events: none;
-      animation: flicker 0.12s infinite;
-      mix-blend-mode: color-burn;
-      background-image: repeating-linear-gradient(
-        0deg,
-        rgba(0, 0, 0, 0.3) 0px,
-        rgba(0, 0, 0, 0.3) 1px,
-        transparent 1px,
-        transparent 3px
-      );
     }
 
     .scanline {
       width: 100%;
-      height: 150px;
+      height: 120px;
       background: linear-gradient(
         0deg,
         rgba(0, 0, 0, 0) 0%,
-        rgba(255, 255, 255, 0.4) 10%,
-        rgba(0, 0, 0, 0.2) 100%
+        rgba(255, 255, 255, 0.15) 10%,
+        rgba(0, 0, 0, 0.1) 100%
       );
-      opacity: 0.3;
+      opacity: 0.2;
       position: fixed;
       bottom: 100%;
-      animation: scanline 5s linear infinite;
+      animation: scanline 6s linear infinite;
       z-index: 1;
       pointer-events: none;
     }
 
     @keyframes scanline {
       0% { bottom: 100%; }
-      100% { bottom: -150px; }
-    }
-
-    body::before {
-      content: '';
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      box-shadow: inset 0 0 60px rgba(0, 243, 255, 0.1);
-      pointer-events: none;
-      z-index: 2;
+      100% { bottom: -120px; }
     }
 
     .glitch {
@@ -156,7 +115,7 @@
       color: var(--text);
       transition: transform 0.2s ease;
       font-size: clamp(1rem, 3vmin, 1.2rem);
-      text-shadow: 0 0 2px var(--primary);
+      background-color: var(--button-bg);
     }
 
     .link-button:hover {
@@ -180,7 +139,7 @@
     }
 
     @media (prefers-reduced-motion) {
-      .crt::after, .scanline {
+      .scanline {
         animation: none !important;
       }
     }
@@ -210,6 +169,7 @@
     </header>
 
     <main id="main-content">
+      <!-- [English Content Section - Same as Previous] -->
       <section id="content-en" lang="en">
         <h2>Contact (DM, email)</h2>
         <a href="https://www.twop0intfive.xyz/contact.html" target="_self" class="link-button" style="background-color: #3A76F0; color: #FFFFFF;" rel="me">
@@ -259,6 +219,7 @@
         </a>
       </section>
 
+      <!-- [Spanish Content Section - Same as Previous] -->
       <section id="content-es" lang="es" style="display: none;">
         <h2>contactar (md, email)</h2>
         <a href="https://www.twop0intfive.xyz/contact.html" target="_self" class="link-button" style="background-color: #3A76F0; color: #FFFFFF;" rel="me">
