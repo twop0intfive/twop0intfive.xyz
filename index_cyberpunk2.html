@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="cyber-tropical" style="color-scheme: dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="description" content="twop0intfive's cyber-tropical digital portal">
+  <title>twop0intfive.xyz - Tropical Cyber Portal</title>
+  <style>
+    :root {
+      --base: #0a0a12;
+      --primary: #00f3ff;
+      --secondary: #ff4d9e;
+      --accent: #f9a73e;
+      --text: #e0e0ec;
+      --min-view: min(100vh, 100vw);
+      --content-size: clamp(300px, 80vmin, 800px);
+    }
+
+    body {
+      margin: 0;
+      background: var(--base);
+      color: var(--text);
+      font-family: system-ui, -apple-system, sans-serif;
+      min-height: 100vh;
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+      place-items: center;
+      overflow-x: hidden;
+    }
+
+    .crt::before {
+      content: " ";
+      display: block;
+      position: fixed;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      background: 
+        linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%),
+        linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+      z-index: 1;
+      background-size: 100% 2px, 3px 100%;
+      pointer-events: none;
+    }
+
+    @keyframes flicker {
+      0% { opacity: 0.27861; }
+      5% { opacity: 0.34769; }
+      10% { opacity: 0.23604; }
+      15% { opacity: 0.10626; }
+      20% { opacity: 0.18128; }
+      25% { opacity: 0.10626; }
+      30% { opacity: 0.18128; }
+      35% { opacity: 0.23604; }
+    }
+
+    .crt::after {
+      content: " ";
+      display: block;
+      position: fixed;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      background: rgba(18, 16, 16, 0.1);
+      opacity: 0;
+      z-index: 1;
+      pointer-events: none;
+      animation: flicker 0.15s infinite;
+    }
+
+    .scanline {
+      width: 100%;
+      height: 100px;
+      background: linear-gradient(
+        0deg,
+        rgba(0, 0, 0, 0) 0%,
+        rgba(255, 255, 255, 0.2) 10%,
+        rgba(0, 0, 0, 0.1) 100%
+      );
+      opacity: 0.1;
+      position: fixed;
+      bottom: 100%;
+      animation: scanline 10s linear infinite;
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    @keyframes scanline {
+      0% { bottom: 100%; }
+      80% { bottom: 100%; }
+      100% { bottom: 0%; }
+    }
+
+    .glitch {
+      position: relative;
+      font-size: clamp(2rem, 8vmin, 4rem);
+      text-transform: uppercase;
+    }
+
+    .glitch::before,
+    .glitch::after {
+      content: attr(data-text);
+      position: absolute;
+      top: 0;
+      left: 0;
+      opacity: 0.8;
+    }
+
+    .glitch::before { color: var(--primary); animation: glitch-1 2s infinite; }
+    .glitch::after { color: var(--secondary); animation: glitch-2 2s infinite; }
+
+    @keyframes glitch-1 {
+      0% { transform: translate(0); }
+      20% { transform: translate(-2px, 2px); }
+      40% { transform: translate(-2px, -2px); }
+      60% { transform: translate(2px, 2px); }
+      80% { transform: translate(2px, -2px); }
+      100% { transform: translate(0); }
+    }
+
+    .portal-grid {
+      display: grid;
+      gap: clamp(1rem, 2vmax, 2rem);
+      width: var(--content-size);
+      max-width: 90vw;
+      margin: auto;
+      padding: 2rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .link-button {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: clamp(0.8rem, 2vmin, 1.2rem);
+      border: 2px solid var(--primary);
+      border-radius: 8px;
+      text-decoration: none;
+      color: var(--text);
+      transition: transform 0.2s ease;
+      font-size: clamp(1rem, 3vmin, 1.2rem);
+    }
+
+    .link-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 15px var(--primary);
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .small-text {
+      font-size: 0.8rem;
+      text-align: center;
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 1rem;
+    }
+
+    @media (prefers-reduced-motion) {
+      .crt::after, .scanline {
+        animation: none !important;
+      }
+    }
+
+    @media (min-aspect-ratio: 21/9) {
+      .portal-grid {
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      }
+      h2 {
+        grid-column: 1 / -1;
+      }
+    }
+
+    @media (max-aspect-ratio: 3/4) {
+      .portal-grid {
+        width: 95vw;
+      }
+    }
+  </style>
+</head>
+<body class="crt">
+  <div class="scanline"></div>
+  
+  <div class="aspect-container">
+    <header class="header" aria-labelledby="main-heading">
+      <h1 id="main-heading" class="glitch" data-text="twop0intfive">twop0intfive</h1>
+    </header>
+
+    <main id="main-content">
+      <section id="content-en" lang="en">
+        <h2>Contact (DM, email)</h2>
+        <a href="https://www.twop0intfive.xyz/contact.html" target="_self" class="link-button" style="background-color: #3A76F0; color: #FFFFFF;" rel="me">
+          <i class="fa fa-address-book"></i> Contact Me
+        </a>
+        
+        <h2>Digital Garden & Microblogging</h2>
+        <a href="https://elbatey.twop0intfive.xyz" target="_blank" class="link-button" style="background-color: #000000; color: #09ff00;" rel="me">
+          <i class="fas fa-blog" aria-hidden="true"></i> 🏝️ el batey | digital garden
+        </a>
+        <a href="https://corteximplant.com/@twop0intfive" target="_blank" class="link-button" style="background-color: #6364ff; color: #FFFFFF;" rel="me">
+          <i class="fa fa-mastodon" aria-hidden="true"></i> CORTEX IMPLANT (Fediverse/Mastodon)
+        </a>
+        <a href="https://bsky.app/profile/twop0intfive.xyz" target="_blank" class="link-button" style="background-color: #00acee; color: #FFFFFF;" rel="me">
+          <i class="fa fa-cloud" aria-hidden="true"></i> Bluesky
+        </a>
+
+        <h2>See/Watch</h2>
+        <a href="https://www.youtube.com/twop0intfive" target="_blank" class="link-button" style="background-color: #f30619; color: #FFFFFF;" rel="me">
+          <i class="fa fa-youtube" aria-hidden="true"></i> YouTube
+        </a>
+        <a href="https://tiktok.com/@twop0intfive_" target="_blank" class="link-button" style="background-color: #ff0050; color: #FFFFFF;" rel="me">
+          <i class="fa fa-play" aria-hidden="true"></i> TikTok
+        </a>
+        <a href="https://instagram.com/el.pittsboricua" target="_blank" class="link-button" style="background-color: #c32aa3; color: #FFFFFF;" rel="me">
+          <i class="fa fa-instagram" aria-hidden="true"></i> Instagram
+        </a>
+        <a href="https://pixelfed.social/twop0intfive" target="_blank" class="link-button" style="background-color: #EF0329; color: #FFFFFF;" rel="me">
+          <i class="fa fa-pixelfed" aria-hidden="true"></i> Pixelfed
+        </a>
+        <a href="https://loops.video/@twop0intfive" target="_blank" class="link-button" style="background-color: #FFD700; color: #333;" rel="me">
+          <i class="" aria-hidden="true"></i> ➰ Loops
+        </a>
+        <a href="https://www.xiaohongshu.com/user/profile/67859e03000000000801edf1" target="_blank" class="link-button" style="background-color: #FF2740; color: #FFFFFF;" rel="me">
+          <i class="" aria-hidden="true"></i> 🧧 小红书
+        </a>
+        <a href="https://unsplash.com/@twop0intfive" target="_blank" class="link-button" style="background-color: #FFFFFF; color: #333;" rel="me">
+          <i class="fa fa-unsplash" aria-hidden="true"></i> Unsplash
+        </a>
+
+        <h2>Playlists & Music</h2>
+        <a href="https://soundcloud.com/twop0intfive" target="_blank" class="link-button" style="background-color: #ff5500; color: #FFFFFF;" rel="me">
+          <i class="fa fa-soundcloud" aria-hidden="true"></i> Soundcloud
+        </a>
+        <a href="https://music.apple.com/profile/twop0intfive" target="_blank" class="link-button" style="background-color: #fa57c1; color: #FFFFFF;" rel="me">
+          <i class="fa fa-itunes" aria-hidden="true"></i> Music
+        </a>
+      </section>
+
+      <section id="content-es" lang="es" style="display: none;">
+        <h2>contactar (md, email)</h2>
+        <a href="https://www.twop0intfive.xyz/contact.html" target="_self" class="link-button" style="background-color: #3A76F0; color: #FFFFFF;" rel="me">
+          <i class="fa fa-address-book"></i> contáctame
+        </a>
+
+        <h2>jardín digital y microblogging</h2>
+        <a href="https://elbatey.twop0intfive.xyz" target="_blank" class="link-button" style="background-color: #000000; color: #09ff00;" rel="me">
+          <i class="fas fa-blog" aria-hidden="true"></i> 🏝️ el batey | jardín digital
+        </a>
+        <a href="https://corteximplant.com/@twop0intfive" target="_blank" class="link-button" style="background-color: #6364ff; color: #FFFFFF;" rel="me">
+          <i class="fa fa-mastodon" aria-hidden="true"></i> CORTEX IMPLANT (Fediverse/Mastodn)
+        </a>
+        <a href="https://bsky.app/profile/twop0intfive.xyz" target="_blank" class="link-button" style="background-color: #00acee; color: #FFFFFF;" rel="me">
+          <i class="fa fa-cloud" aria-hidden="true"></i> Bluesky
+        </a>
+
+        <h2>ver/mirar</h2>
+        <a href="https://www.youtube.com/twop0intfive" target="_blank" class="link-button" style="background-color: #f30619; color: #FFFFFF;" rel="me">
+          <i class="fa fa-youtube" aria-hidden="true"></i> YouTube
+        </a>
+        <a href="https://tiktok.com/@twop0intfive_" target="_blank" class="link-button" style="background-color: #ff0050; color: #FFFFFF;" rel="me">
+          <i class="fa fa-play" aria-hidden="true"></i> TikTok
+        </a>
+        <a href="https://instagram.com/el.pittsboricua" target="_blank" class="link-button" style="background-color: #c32aa3; color: #FFFFFF;" rel="me">
+          <i class="fa fa-instagram" aria-hidden="true"></i> Instagram
+        </a>
+        <a href="https://pixelfed.social/twop0intfive" target="_blank" class="link-button" style="background-color: #EF0329; color: #FFFFFF;" rel="me">
+          <i class="fa fa-pixelfed" aria-hidden="true"></i> Pixelfed
+        </a>
+        <a href="https://loops.video/@twop0intfive" target="_blank" class="link-button" style="background-color: #FFD700; color: #333;" rel="me">
+          <i class="" aria-hidden="true"></i> ➰ Loops
+        </a>
+        <a href="https://www.xiaohongshu.com/user/profile/67859e03000000000801edf1" target="_blank" class="link-button" style="background-color: #FF2740; color: #FFFFFF;" rel="me">
+          <i class="" aria-hidden="true"></i> 🧧 小红书
+        </a>
+        <a href="https://unsplash.com/@twop0intfive" target="_blank" class="link-button" style="background-color: #FFFFFF; color: #333;" rel="me">
+          <i class="fa fa-unsplash" aria-hidden="true"></i> Unsplash
+        </a>
+
+        <h2>música</h2>
+        <a href="https://soundcloud.com/twop0intfive" target="_blank" class="link-button" style="background-color: #ff5500; color: #FFFFFF;" rel="me">
+          <i class="fa fa-soundcloud" aria-hidden="true"></i> Soundcloud
+        </a>
+        <a href="https://music.apple.com/profile/twop0intfive" target="_blank" class="link-button" style="background-color: #fa57c1; color: #FFFFFF;" rel="me">
+          <i class="fa fa-itunes" aria-hidden="true"></i> Music
+        </a>
+      </section>
+    </main>
+
+    <footer>
+      <img src="https://counter.datakra.sh/twop0intfive.png" alt="Hit Counter">
+    </footer>
+
+    <div id="language-text" class="small-text">
+      <p id="text-en" style="display: none;">Views and opinions expressed via my Internet presence are solely my own and do not reflect the position of, nor imply my position on, any past, present, or future employer or affiliated organization.</p>
+      <p id="text-es" style="display: none;">Las opiniones y puntos de vista expresados ​​a través de mi presencia en Internet son exclusivamente míos y no reflejan ni implican la posición de ningún empleador u organización afiliada pasada, presente o futura, ni a la mía sobre cual.</p>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const userLang = navigator.language || navigator.userLanguage;
+      
+      if (userLang.startsWith('es')) {
+        document.getElementById('content-en').style.display = 'none';
+        document.getElementById('content-es').style.display = 'block';
+        document.getElementById('text-es').style.display = 'block';
+        document.documentElement.lang = 'es';
+      } else {
+        document.getElementById('content-en').style.display = 'block';
+        document.getElementById('content-es').style.display = 'none';
+        document.getElementById('text-en').style.display = 'block';
+        document.documentElement.lang = 'en';
+      }
+    });
+
+    let lastAspect = window.innerWidth / window.innerHeight;
+    function handleResize() {
+      const newAspect = window.innerWidth / window.innerHeight;
+      if (Math.abs(newAspect - lastAspect) > 0.1) {
+        lastAspect = newAspect;
+        document.documentElement.style.setProperty('--content-size', 
+          `clamp(300px, ${80 * (newAspect > 1 ? 1 : 0.8)}vmin, 800px)`);
+      }
+    }
+    
+    window.addEventListener('resize', handleResize);
+    handleResize();
+  </script>
+</body>
+</html>
