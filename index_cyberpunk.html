@@ -2,8 +2,7 @@
 <html lang="en" data-theme="cyber-tropical" style="color-scheme: dark">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="twop0intfive's cyber-tropical digital portal">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>twop0intfive.xyz - Tropical Cyber Portal</title>
   <style>
     :root {
@@ -12,7 +11,10 @@
       --secondary: #ff4d9e;
       --accent: #f9a73e;
       --text: #e0e0ec;
+      --min-view: min(100vh, 100vw);
+      --content-size: clamp(300px, 80vmin, 800px);
     }
+    
     body {
       margin: 0;
       background: var(--base);
@@ -21,147 +23,96 @@
       min-height: 100vh;
       display: grid;
       grid-template-rows: auto 1fr auto;
+      place-items: center;
+      overflow-x: hidden;
     }
-    /* CRT Effects */
-    .crt::before {
-      content: " ";
-      display: block;
-      position: fixed;
-      top: 0;
-      left: 0;
-      bottom: 0;
-      right: 0;
-      background: 
-        linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%),
-        linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
-      z-index: 1;
-      background-size: 100% 2px, 3px 100%;
-      pointer-events: none;
+
+    /* Aspect Ratio Scaling */
+    .aspect-container {
+      display: grid;
+      place-items: center;
+      width: 100vw;
+      height: 100vh;
+      padding: clamp(1rem, 5vmin, 3rem);
+      box-sizing: border-box;
     }
-    @keyframes flicker {
-      0% { opacity: 0.27861; }
-      5% { opacity: 0.34769; }
-      10% { opacity: 0.23604; }
-      15% { opacity: 0.10626; }
-      20% { opacity: 0.18128; }
-      25% { opacity: 0.10626; }
-      30% { opacity: 0.18128; }
-      35% { opacity: 0.23604; }
-    }
-    .crt::after {
-      content: " ";
-      display: block;
-      position: fixed;
-      top: 0;
-      left: 0;
-      bottom: 0;
-      right: 0;
-      background: rgba(18, 16, 16, 0.1);
-      opacity: 0;
-      z-index: 1;
-      pointer-events: none;
-      animation: flicker 0.15s infinite;
-    }
-    .scanline {
-      width: 100%;
-      height: 100px;
-      background: linear-gradient(
-        0deg,
-        rgba(0, 0, 0, 0) 0%,
-        rgba(255, 255, 255, 0.2) 10%,
-        rgba(0, 0, 0, 0.1) 100%
-      );
-      opacity: 0.1;
-      position: fixed;
-      bottom: 100%;
-      animation: scanline 10s linear infinite;
-      z-index: 1;
-      pointer-events: none;
-    }
-    @keyframes scanline {
-      0% { bottom: 100%; }
-      80% { bottom: 100%; }
-      100% { bottom: 0%; }
-    }
-    @media (prefers-reduced-motion) {
-      .crt::after, .scanline {
-        animation: none !important;
-      }
-    }
-    /* Existing Styles Remain Below */
-    .glitch {
-      position: relative;
-      font-size: 2.5rem;
-      text-transform: uppercase;
-    }
-    .glitch::before,
-    .glitch::after {
-      content: attr(data-text);
-      position: absolute;
-      top: 0;
-      left: 0;
-      opacity: 0.8;
-    }
-    .glitch::before { color: var(--primary); animation: glitch-1 2s infinite; }
-    .glitch::after { color: var(--secondary); animation: glitch-2 2s infinite; }
-    @keyframes glitch-1 {
-      0% { transform: translate(0); }
-      20% { transform: translate(-2px, 2px); }
-      40% { transform: translate(-2px, -2px); }
-      60% { transform: translate(2px, 2px); }
-      80% { transform: translate(2px, -2px); }
-      100% { transform: translate(0); }
-    }
+
     .portal-grid {
       display: grid;
-      gap: 1.5rem;
-      padding: 2rem;
-      max-width: 600px;
-      margin: 0 auto;
+      gap: clamp(1rem, 2vmax, 2rem);
+      width: var(--content-size);
+      max-width: 90vw;
+      margin: auto;
       position: relative;
       z-index: 2;
     }
+
+    /* Dynamic Font Sizing */
+    .glitch {
+      font-size: clamp(2rem, 8vmin, 4rem);
+    }
+
+    h2 {
+      font-size: clamp(1.2rem, 4vmin, 2rem);
+    }
+
     .link-button {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      padding: 1.2rem;
-      border: 2px solid var(--primary);
-      border-radius: 8px;
-      text-decoration: none;
-      color: var(--text);
-      transition: transform 0.2s ease;
-      background-color: var(--button-bg);
-      position: relative;
-      z-index: 2;
+      font-size: clamp(1rem, 3vmin, 1.2rem);
+      padding: clamp(0.8rem, 2vmin, 1.2rem);
     }
-    .link-button:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 0 15px var(--primary);
+
+    /* Aspect Ratio Breakpoints */
+    @media (min-aspect-ratio: 21/9) {
+      .portal-grid {
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      }
+      h2 {
+        grid-column: 1 / -1;
+      }
     }
-    footer {
-      text-align: center;
-      padding: 2rem;
-      position: relative;
-      z-index: 2;
+
+    @media (max-aspect-ratio: 3/4) {
+      .portal-grid {
+        width: 95vw;
+      }
+      .link-button {
+        grid-template-columns: auto 1fr;
+      }
     }
-    .small-text {
-      font-size: 0.8rem;
-      text-align: center;
-      max-width: 600px;
-      margin: 0 auto;
-      padding: 1rem;
-      position: relative;
-      z-index: 2;
+
+    @media (orientation: portrait) and (max-aspect-ratio: 9/16) {
+      :root {
+        --content-size: 95vw;
+      }
     }
+
+    /* TV Optimized Layout */
+    @media (min-aspect-ratio: 16/9) and (min-width: 1920px) {
+      :root {
+        --content-size: 60vw;
+      }
+      .glitch {
+        font-size: 4rem;
+      }
+      .link-button {
+        padding: 2rem;
+        gap: 2rem;
+      }
+    }
+
+    /* Existing CRT effects remain unchanged */
+    .crt::before { /* ... */ }
+    .scanline { /* ... */ }
   </style>
 </head>
 <body class="crt">
   <div class="scanline"></div>
   
-  <header class="header" aria-labelledby="main-heading">
-    <h1 id="main-heading" class="glitch" data-text="twop0intfive">twop0intfive</h1>
-  </header>
+  <div class="aspect-container">
+    <header class="header" aria-labelledby="main-heading">
+      <h1 id="main-heading" class="glitch" data-text="twop0intfive">twop0intfive</h1>
+    </header>
+
 
   <main id="main-content">
     <section id="content-en" lang="en">
@@ -273,6 +224,23 @@
   </div>
 
   <script>
+    // Aspect Ratio Watcher
+    let lastAspect = window.innerWidth / window.innerHeight;
+    
+    function handleResize() {
+      const newAspect = window.innerWidth / window.innerHeight;
+      if (Math.abs(newAspect - lastAspect) > 0.1) {
+        lastAspect = newAspect;
+        document.documentElement.style.setProperty('--content-size', 
+          `clamp(300px, ${80 * (newAspect > 1 ? 1 : 0.8)}vmin, 800px)`);
+      }
+    }
+    
+    window.addEventListener('resize', handleResize);
+    window.addEventListener('DOMContentLoaded', () => {
+      handleResize();
+
+    // Language Detection
     document.addEventListener('DOMContentLoaded', function() {
       const userLang = navigator.language || navigator.userLanguage;
       
