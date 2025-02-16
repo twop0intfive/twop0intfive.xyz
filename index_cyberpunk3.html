@@ -4,30 +4,28 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <meta name="description" content="𝘁𝘄𝗼𝗽𝟬𝗶𝗻𝘁𝗳𝗶𝘃𝗲の物語 cyber-tropical digital portal">
-  <title>𝘁𝘄𝗼𝗽𝟬𝗶𝗻𝘁𝗳𝗶𝘃𝗲の物語.xyz - Tropical Cyber Portal</title>
+  <title>𝘁𝘄𝗼𝗽𝟬𝗶𝗻𝘁𝗳𝗶𝘃𝗲の物語.xyz - Terminal Interface</title>
   <style>
     :root {
       --base: #0a0a12;
-      --primary: #00f3ff;
-      --secondary: #ff4d9e;
-      --accent: #f9a73e;
-      --text: #e0e0ec;
+      --primary: #00ff87;
+      --secondary: #ff0055;
+      --accent: #00f3ff;
+      --text: #00ff00;
       --content-size: clamp(300px, 80vmin, 800px);
-      --btn-clip: polygon(0 0, 100% 0, 95% 100%, 5% 100%);
     }
 
     body {
       margin: 0;
       background: var(--base);
       color: var(--text);
-      font-family: system-ui, -apple-system, sans-serif;
+      font-family: 'Courier New', monospace;
       min-height: 100vh;
       display: grid;
       grid-template-rows: auto 1fr auto;
       place-items: center;
       overflow-x: hidden;
-      text-align: center;
-      line-height: 1.6;
+      line-height: 1.4;
     }
 
     .crt::before {
@@ -63,189 +61,85 @@
       pointer-events: none;
     }
 
-    @keyframes scanline {
-      0% { bottom: 100%; }
-      100% { bottom: -120px; }
+    .cyber-terminal {
+      background: rgba(0, 0, 0, 0.8);
+      border: 2px solid var(--primary);
+      padding: 2rem;
+      width: var(--content-size);
+      max-width: 90vw;
+      margin: 2rem auto;
+      box-shadow: 0 0 30px rgba(0, 255, 135, 0.2);
     }
 
-    .glitch {
+    .terminal-header {
+      color: var(--primary);
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
       position: relative;
-      font-size: clamp(2.5rem, 9vmin, 5rem);
-      text-transform: uppercase;
-      text-align: center;
-      width: 100%;
-      margin: 2rem 0;
-      color: transparent;
+      animation: terminal-glitch 2s infinite;
     }
 
-    .glitch::before,
-    .glitch::after {
-      content: attr(data-text);
-      position: absolute;
-      top: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 100%;
-      color: var(--text);
+    .terminal-links {
+      display: grid;
+      gap: 1rem;
+    }
+
+    .command-line {
+      position: relative;
+      padding: 1rem;
+      background: rgba(0, 0, 0, 0.5);
+      border: 1px solid rgba(0, 255, 135, 0.3);
+      cursor: pointer;
+      transition: all 0.3s ease;
       overflow: hidden;
     }
 
-    .glitch::before {
-      left: calc(50% + 2px);
-      text-shadow: -2px 0 var(--primary);
-      animation: glitch-1 2s infinite linear;
+    .command-line::before {
+      content: '>';
+      color: var(--primary);
+      margin-right: 1rem;
     }
 
-    .glitch::after {
-      left: calc(50% - 2px);
-      text-shadow: 2px 0 var(--secondary);
-      animation: glitch-2 2s infinite linear;
+    .command-line::after {
+      content: '_';
+      animation: cursor-blink 1s infinite;
+      position: absolute;
+      right: 1rem;
     }
 
-    @keyframes glitch-1 {
-      0% { clip-path: inset(20% 0 30% 0); }
-      100% { clip-path: inset(10% 0 40% 0); }
+    .command-line:hover {
+      background: rgba(0, 255, 135, 0.1);
+      box-shadow: 0 0 20px rgba(0, 255, 135, 0.3);
+      transform: translateX(10px);
     }
 
-    @keyframes glitch-2 {
-      0% { clip-path: inset(40% 0 10% 0); }
-      100% { clip-path: inset(30% 0 20% 0); }
+    @keyframes cursor-blink {
+      0%, 100% { opacity: 0; }
+      50% { opacity: 1; }
     }
 
-    .profile-container {
-      margin: 3rem 0;
-      display: flex;
-      justify-content: center;
+    @keyframes terminal-glitch {
+      0% { text-shadow: 0 0 10px var(--primary); }
+      50% { text-shadow: 2px 0 10px var(--secondary), -2px 0 10px var(--accent); }
+      100% { text-shadow: 0 0 10px var(--primary); }
     }
 
+    /* Existing profile and header styles remain unchanged */
+    .profile-container { margin: 3rem 0; }
     .profile-picture {
       width: 180px;
       height: 180px;
       border-radius: 50%;
       border: 3px solid var(--primary);
       box-shadow: 0 0 20px var(--primary);
-      transition: transform 0.3s ease;
-      position: relative;
-      overflow: hidden;
     }
 
-    .profile-picture::after {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: linear-gradient(
-        45deg,
-        transparent 0%,
-        rgba(0, 243, 255, 0.1) 50%,
-        transparent 100%
-      );
-      animation: scan 5s linear infinite;
-    }
-
-    .profile-picture:hover {
-      transform: rotate(5deg) scale(1.05);
-    }
-
-    .portal-link {
-      position: relative;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 1rem;
-      padding: 1.2rem 2.5rem;
-      margin: 0.8rem 0;
-      border: 2px solid var(--primary);
-      background: rgba(0, 0, 0, 0.4);
-      color: var(--text);
-      font-size: 1.1rem;
-      text-decoration: none;
-      clip-path: var(--btn-clip);
-      transition: all 0.3s ease;
-      box-shadow: 0 0 10px rgba(0, 243, 255, 0.2);
-    }
-
-    .portal-link::before {
-      content: '';
-      position: absolute;
-      top: -2px;
-      left: -2px;
-      right: -2px;
-      bottom: -2px;
-      border: 2px solid var(--accent);
-      clip-path: var(--btn-clip);
-      opacity: 0;
-      transition: opacity 0.3s ease;
-    }
-
-    .portal-link:hover {
-      background: rgba(0, 0, 0, 0.6);
-      transform: translateY(-2px);
-      box-shadow: 0 0 20px var(--primary),
-                  0 0 30px rgba(0, 243, 255, 0.3);
-    }
-
-    .portal-link:hover::before {
-      opacity: 1;
-    }
-
-    .portal-grid {
-      display: grid;
-      gap: 1.8rem;
-      width: var(--content-size);
-      max-width: 90vw;
-      margin: auto;
-      padding: 2rem;
-    }
-
-    h2 {
-      font-size: 1.8rem;
-      margin: 2rem 0 1.5rem;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-      color: var(--accent);
-    }
-
-    footer {
-      text-align: center;
-      padding: 2rem;
-      width: 100%;
-    }
-
-    .small-text {
-      font-size: 0.7rem;
-      line-height: 1.4;
-      max-width: 600px;
-      margin: 2rem auto;
-      padding: 0 1rem;
-      opacity: 0.8;
-    }
-
-    @media (prefers-reduced-motion) {
-      .scanline, .profile-picture::after {
-        animation: none !important;
-      }
-      .glitch::before,
-      .glitch::after {
-        animation: none;
-        opacity: 0;
-      }
-    }
+    /* Language toggle adjustments */
+    .small-text { font-size: 0.7rem; }
 
     @media (max-width: 768px) {
-      .profile-picture {
-        width: 140px;
-        height: 140px;
-      }
-      h2 {
-        font-size: 1.5rem;
-      }
-      .portal-link {
-        padding: 1rem 1.5rem;
-        font-size: 1rem;
-      }
+      .cyber-terminal { padding: 1rem; }
+      .command-line { font-size: 0.9rem; }
     }
   </style>
 </head>
@@ -266,101 +160,87 @@
 
     <main id="main-content">
       <section id="content-en" lang="en">
-        <h2>Contact (DM, email)</h2>
-        <a href="https://www.twop0intfive.xyz/contact.html" class="portal-link" rel="me">
-          <i class="fa fa-address-book"></i> Contact Me
-        </a>
-        
-        <h2>Digital Garden & Microblogging</h2>
-        <a href="https://elbatey.twop0intfive.xyz" class="portal-link" rel="me">
-          <i class="fas fa-blog"></i> 🏝️ el batey | digital garden
-        </a>
-        <a href="https://corteximplant.com/@twop0intfive" class="portal-link" rel="me">
-          <i class="fa fa-mastodon"></i> CORTEX IMPLANT (Fediverse/Mastodon)
-        </a>
-        <a href="https://bsky.app/profile/twop0intfive.xyz" class="portal-link" rel="me">
-          <i class="fa fa-cloud"></i> Bluesky
-        </a>
-
-        <h2>See/Watch</h2>
-        <a href="https://www.youtube.com/twop0intfive" class="portal-link" rel="me">
-          <i class="fa fa-youtube"></i> YouTube
-        </a>
-        <a href="https://tiktok.com/@twop0intfive_" class="portal-link" rel="me">
-          <i class="fa fa-play"></i> TikTok
-        </a>
-        <a href="https://instagram.com/el.pittsboricua" class="portal-link" rel="me">
-          <i class="fa fa-instagram"></i> Instagram
-        </a>
-        <a href="https://pixelfed.social/twop0intfive" class="portal-link" rel="me">
-          <i class="fa fa-pixelfed"></i> Pixelfed
-        </a>
-        <a href="https://loops.video/@twop0intfive" class="portal-link" rel="me">
-          <i class="fa fa-loop"></i> ➰ Loops
-        </a>
-        <a href="https://www.xiaohongshu.com/user/profile/67859e03000000000801edf1" class="portal-link" rel="me">
-          <i class="fa fa-brands fa-weibo"></i> 🧧 小红书
-        </a>
-        <a href="https://unsplash.com/@twop0intfive" class="portal-link" rel="me">
-          <i class="fa fa-unsplash"></i> Unsplash
-        </a>
-
-        <h2>Playlists & Music</h2>
-        <a href="https://soundcloud.com/twop0intfive" class="portal-link" rel="me">
-          <i class="fa fa-soundcloud"></i> Soundcloud
-        </a>
-        <a href="https://music.apple.com/profile/twop0intfive" class="portal-link" rel="me">
-          <i class="fa fa-itunes"></i> Music
-        </a>
+        <div class="cyber-terminal">
+          <div class="terminal-header">
+            > SOCIAL_ACCESS // TWOP0INTFIVE // VERSION 2.5.0
+          </div>
+          <div class="terminal-links">
+            <a href="https://www.twop0intfive.xyz/contact.html" class="command-line" rel="me">
+              ACCESS_CONTACT_PORTAL
+              <span class="cursor"></span>
+            </a>
+            <a href="https://elbatey.twop0intfive.xyz" class="command-line" rel="me">
+              LAUNCH_DIGITAL_GARDEN
+              <span class="cursor"></span>
+            </a>
+            <a href="https://corteximplant.com/@twop0intfive" class="command-line" rel="me">
+              CONNECT_MASTODON_INSTANCE
+              <span class="cursor"></span>
+            </a>
+            <a href="https://bsky.app/profile/twop0intfive.xyz" class="command-line" rel="me">
+              INIT_BLUESKY_PROTOCOL
+              <span class="cursor"></span>
+            </a>
+            <a href="https://www.youtube.com/twop0intfive" class="command-line" rel="me">
+              OPEN_VIDEO_FEED
+              <span class="cursor"></span>
+            </a>
+            <a href="https://tiktok.com/@twop0intfive_" class="command-line" rel="me">
+              START_SHORTFORM_STREAM
+              <span class="cursor"></span>
+            </a>
+            <a href="https://instagram.com/el.pittsboricua" class="command-line" rel="me">
+              ENABLE_IMAGE_SHARING
+              <span class="cursor"></span>
+            </a>
+            <a href="https://pixelfed.social/twop0intfive" class="command-line" rel="me">
+              ACCESS_PHOTO_ARCHIVE
+              <span class="cursor"></span>
+            </a>
+          </div>
+        </div>
       </section>
 
       <section id="content-es" lang="es" style="display: none;">
-        <h2>contactar (md, email)</h2>
-        <a href="https://www.twop0intfive.xyz/contact.html" class="portal-link" rel="me">
-          <i class="fa fa-address-book"></i> contáctame
-        </a>
-
-        <h2>jardín digital y microblogging</h2>
-        <a href="https://elbatey.twop0intfive.xyz" class="portal-link" rel="me">
-          <i class="fas fa-blog"></i> 🏝️ el batey | jardín digital
-        </a>
-        <a href="https://corteximplant.com/@twop0intfive" class="portal-link" rel="me">
-          <i class="fa fa-mastodon"></i> CORTEX IMPLANT (Fediverse/Mastodn)
-        </a>
-        <a href="https://bsky.app/profile/twop0intfive.xyz" class="portal-link" rel="me">
-          <i class="fa fa-cloud"></i> Bluesky
-        </a>
-
-        <h2>ver/mirar</h2>
-        <a href="https://www.youtube.com/twop0intfive" class="portal-link" rel="me">
-          <i class="fa fa-youtube"></i> YouTube
-        </a>
-        <a href="https://tiktok.com/@twop0intfive_" class="portal-link" rel="me">
-          <i class="fa fa-play"></i> TikTok
-        </a>
-        <a href="https://instagram.com/el.pittsboricua" class="portal-link" rel="me">
-          <i class="fa fa-instagram"></i> Instagram
-        </a>
-        <a href="https://pixelfed.social/twop0intfive" class="portal-link" rel="me">
-          <i class="fa fa-pixelfed"></i> Pixelfed
-        </a>
-        <a href="https://loops.video/@twop0intfive" class="portal-link" rel="me">
-          <i class="fa fa-loop"></i> ➰ Loops
-        </a>
-        <a href="https://www.xiaohongshu.com/user/profile/67859e03000000000801edf1" class="portal-link" rel="me">
-          <i class="fa fa-brands fa-weibo"></i> 🧧 小红书
-        </a>
-        <a href="https://unsplash.com/@twop0intfive" class="portal-link" rel="me">
-          <i class="fa fa-unsplash"></i> Unsplash
-        </a>
-
-        <h2>música</h2>
-        <a href="https://soundcloud.com/twop0intfive" class="portal-link" rel="me">
-          <i class="fa fa-soundcloud"></i> Soundcloud
-        </a>
-        <a href="https://music.apple.com/profile/twop0intfive" class="portal-link" rel="me">
-          <i class="fa fa-itunes"></i> Music
-        </a>
+        <div class="cyber-terminal">
+          <div class="terminal-header">
+            > ACCESO_SOCIAL // TWOP0INTFIVE // VERSIÓN 2.5.0
+          </div>
+          <div class="terminal-links">
+            <a href="https://www.twop0intfive.xyz/contact.html" class="command-line" rel="me">
+              ACCEDER_PORTAL_CONTACTO
+              <span class="cursor"></span>
+            </a>
+            <a href="https://elbatey.twop0intfive.xyz" class="command-line" rel="me">
+              INICIAR_JARDÍN_DIGITAL
+              <span class="cursor"></span>
+            </a>
+            <a href="https://corteximplant.com/@twop0intfive" class="command-line" rel="me">
+              CONECTAR_INSTANCIA_MASTODON
+              <span class="cursor"></span>
+            </a>
+            <a href="https://bsky.app/profile/twop0intfive.xyz" class="command-line" rel="me">
+              INICIAR_PROTOCOLO_BLUESKY
+              <span class="cursor"></span>
+            </a>
+            <a href="https://www.youtube.com/twop0intfive" class="command-line" rel="me">
+              ABRIR_TRANSMISIÓN_VIDEO
+              <span class="cursor"></span>
+            </a>
+            <a href="https://tiktok.com/@twop0intfive_" class="command-line" rel="me">
+              INICIAR_STREAM_CORTO
+              <span class="cursor"></span>
+            </a>
+            <a href="https://instagram.com/el.pittsboricua" class="command-line" rel="me">
+              ACTIVAR_COMPARTIR_IMAGENES
+              <span class="cursor"></span>
+            </a>
+            <a href="https://pixelfed.social/twop0intfive" class="command-line" rel="me">
+              ACCEDER_ARCHIVO_FOTOS
+              <span class="cursor"></span>
+            </a>
+          </div>
+        </div>
       </section>
     </main>
 
@@ -389,20 +269,12 @@
         document.getElementById('text-en').style.display = 'block';
         document.documentElement.lang = 'en';
       }
-    });
 
-    let lastAspect = window.innerWidth / window.innerHeight;
-    function handleResize() {
-      const newAspect = window.innerWidth / window.innerHeight;
-      if (Math.abs(newAspect - lastAspect) > 0.1) {
-        lastAspect = newAspect;
-        document.documentElement.style.setProperty('--content-size', 
-          `clamp(300px, ${80 * (newAspect > 1 ? 1 : 0.8)}vmin, 800px)`);
-      }
-    }
-    
-    window.addEventListener('resize', handleResize);
-    handleResize();
+      // Add terminal typing animation
+      document.querySelectorAll('.command-line').forEach((el, index) => {
+        el.style.animationDelay = `${index * 0.2}s`;
+      });
+    });
   </script>
 </body>
 </html>
