@@ -67,8 +67,16 @@
 
     .terminal-links {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
       gap: 1.5rem;
+      width: 100%;
+    }
+
+    .terminal-column {
+      display: grid;
+      gap: 1rem;
+      grid-template-columns: 1fr;
+      grid-auto-rows: min-content;
     }
 
     .command-line {
@@ -80,6 +88,11 @@
       transition: all 0.3s ease;
       overflow: hidden;
       text-align: left;
+      min-width: 0;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      width: 100%;
+      box-sizing: border-box;
     }
 
     .command-line::before {
@@ -94,7 +107,6 @@
       transform: translateX(10px);
     }
 
-    /* Chinese Cyberpunk Styling */
     .command-line.chinese {
       border-color: var(--chinese-red);
       background: rgba(255,39,64,0.1);
@@ -124,10 +136,16 @@
       100% { text-shadow: 0 0 10px var(--primary); }
     }
 
-    @media (max-width: 768px) {
+    @media (max-width: 600px) {
       .terminal-links {
         grid-template-columns: 1fr;
       }
+      
+      .command-line {
+        white-space: normal;
+        padding: 1rem 0.5rem;
+      }
+      
       .profile-picture {
         width: 140px;
         height: 140px;
@@ -276,7 +294,7 @@
         document.documentElement.lang = 'en';
       }
 
-      // Add Chinese platform hover effect
+      // Chinese platform hover effect
       document.querySelectorAll('.command-line.chinese').forEach(link => {
         link.addEventListener('mouseenter', () => {
           link.style.textShadow = '0 0 10px var(--chinese-red)';
