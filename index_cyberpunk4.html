@@ -320,3 +320,387 @@
   </script>
 </body>
 </html>
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en" data-theme="cyber-tropical" style="color-scheme: dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="description" content="𝘁𝘄𝗼𝗽𝟬𝗶𝗻𝘁𝗳𝗶𝘃𝗲の物語 cyber-tropical digital portal">
+  <title>𝘁𝘄𝗼𝗽𝟬𝗶𝗻𝘁𝗳𝗶𝘃𝗲の物語.xyz - Terminal Interface</title>
+  <style>
+    :root {
+      --base: #0a0a12;
+      --primary: #00ff87;
+      --secondary: #ff0055;
+      --accent: #00f3ff;
+      --text: #00ff00;
+      --content-size: clamp(300px, 80vmin, 800px);
+      
+      /* Brand Colors */
+      --youtube: #FF0000;
+      --tiktok: #EE1D52;
+      --instagram: #405DE6;
+      --pixelfed: #EF0329;
+      --soundcloud: #FF5500;
+      --applemusic: #FA57C1;
+      --mastodon: #6364FF;
+      --bluesky: #00ACEE;
+      --loops: #FFD700;
+      --xiaohongshu: #FF2740;
+      --contact: #3A76F0;
+      --garden: #09FF00;
+    }
+
+    body {
+      margin: 0;
+      background: var(--base);
+      color: var(--text);
+      font-family: 'Courier New', monospace;
+      min-height: 100vh;
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+      place-items: center;
+      overflow-x: hidden;
+      line-height: 1.4;
+    }
+
+    .profile-container {
+      display: flex;
+      justify-content: center;
+      width: 100%;
+      margin: 3rem 0;
+    }
+
+    .profile-picture {
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      border: 3px solid var(--primary);
+      box-shadow: 0 0 20px var(--primary);
+      margin: 0 auto;
+      display: block;
+    }
+
+    .cyber-terminal {
+      background: rgba(0, 0, 0, 0.8);
+      border: 2px solid var(--primary);
+      padding: 2rem;
+      width: var(--content-size);
+      max-width: 90vw;
+      margin: 2rem auto;
+      box-shadow: 0 0 30px rgba(0, 255, 135, 0.2);
+    }
+
+    .terminal-header {
+      color: var(--primary);
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
+      position: relative;
+      animation: terminal-glitch 2s infinite;
+      text-align: center;
+    }
+
+    .terminal-links {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      width: 100%;
+    }
+
+    .terminal-column {
+      display: grid;
+      gap: 1rem;
+      grid-template-columns: 1fr;
+      grid-auto-rows: min-content;
+    }
+
+    .command-line {
+      position: relative;
+      padding: 1rem;
+      background: rgba(0, 0, 0, 0.5);
+      border: 1px solid;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      overflow: hidden;
+      text-align: left;
+      min-width: 0;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    .command-line::before {
+      content: '>';
+      margin-right: 1rem;
+    }
+
+    .command-line:hover {
+      transform: translateX(10px);
+    }
+
+    /* Platform-specific styling */
+    .contact { border-color: var(--contact); background: rgba(58,118,240,0.1); }
+    .contact::before { color: var(--contact); }
+    .contact:hover { box-shadow: 0 0 25px var(--contact); }
+
+    .garden { border-color: var(--garden); background: rgba(9,255,0,0.1); }
+    .garden::before { color: var(--garden); }
+    .garden:hover { box-shadow: 0 0 25px var(--garden); }
+
+    .mastodon { border-color: var(--mastodon); background: rgba(99,100,255,0.1); }
+    .mastodon::before { color: var(--mastodon); }
+    .mastodon:hover { box-shadow: 0 0 25px var(--mastodon); }
+
+    .bluesky { border-color: var(--bluesky); background: rgba(0,172,238,0.1); }
+    .bluesky::before { color: var(--bluesky); }
+    .bluesky:hover { box-shadow: 0 0 25px var(--bluesky); }
+
+    .youtube { border-color: var(--youtube); background: rgba(255,0,0,0.1); }
+    .youtube::before { color: var(--youtube); }
+    .youtube:hover { box-shadow: 0 0 25px var(--youtube); }
+
+    .tiktok { border-color: var(--tiktok); background: rgba(238,29,82,0.1); }
+    .tiktok::before { color: var(--tiktok); }
+    .tiktok:hover { box-shadow: 0 0 25px var(--tiktok); }
+
+    .instagram { 
+      border-color: var(--instagram);
+      background: linear-gradient(45deg, 
+        rgba(64,93,230,0.1) 0%,
+        rgba(131,58,180,0.1) 50%,
+        rgba(225,48,108,0.1) 100%
+      );
+    }
+    .instagram::before { color: var(--instagram); }
+
+    .pixelfed { border-color: var(--pixelfed); background: rgba(239,3,41,0.1); }
+    .pixelfed::before { color: var(--pixelfed); }
+    .pixelfed:hover { box-shadow: 0 0 25px var(--pixelfed); }
+
+    .loops { border-color: var(--loops); background: rgba(255,215,0,0.1); }
+    .loops::before { color: var(--loops); }
+    .loops:hover { box-shadow: 0 0 25px var(--loops); }
+
+    .soundcloud { border-color: var(--soundcloud); background: rgba(255,85,0,0.1); }
+    .soundcloud::before { color: var(--soundcloud); }
+    .soundcloud:hover { box-shadow: 0 0 25px var(--soundcloud); }
+
+    .applemusic { border-color: var(--applemusic); background: rgba(250,87,193,0.1); }
+    .applemusic::before { color: var(--applemusic); }
+    .applemusic:hover { box-shadow: 0 0 25px var(--applemusic); }
+
+    .chinese { border-color: var(--xiaohongshu); background: rgba(255,39,64,0.1); }
+    .chinese::before { content: '🈯'; color: var(--xiaohongshu); }
+    .chinese:hover { box-shadow: 0 0 25px var(--xiaohongshu); }
+
+    .small-text {
+      text-align: center;
+      width: 100%;
+      max-width: 600px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+      font-size: 0.7rem;
+    }
+
+    @keyframes terminal-glitch {
+      0% { text-shadow: 0 0 10px var(--primary); }
+      50% { text-shadow: 2px 0 10px var(--secondary), -2px 0 10px var(--accent); }
+      100% { text-shadow: 0 0 10px var(--primary); }
+    }
+
+    @media (max-width: 600px) {
+      .terminal-links {
+        grid-template-columns: 1fr;
+      }
+      .command-line {
+        white-space: normal;
+        padding: 1rem 0.5rem;
+      }
+      .profile-picture {
+        width: 140px;
+        height: 140px;
+      }
+    }
+  </style>
+</head>
+<script 
+  data-goatcounter="https://twop0intfive.goatcounter.com/count" async src="//gc.zgo.at/count.js">
+</script>
+<body>
+
+    <a href="#main-content" class="skip-link small-text">Skip to main content</a>
+
+    <nav aria-label="webring navigation" class="otswebring">
+        <a href="https://webring.obeythesystem.com/page?=previous" rel="nofollow" aria-label="Previous site in the webring" class="small-text">Previous</a>
+        <a href="https://webring.obeythesystem.com/" rel="nofollow">OBEY THE SYSTEM Webring</a>
+        <a href="https://webring.obeythesystem.com/page?=next" rel="nofollow" aria-label="Next site in the webring" class="small-text">Next</a>
+    </nav>
+  
+<body class="crt">
+  <div class="scanline"></div>
+  
+  <div class="aspect-container">
+    <header class="header">
+      <div class="profile-container">
+        <img src="images/twop0intfive.jpeg" 
+             alt="Profile picture" 
+             class="profile-picture"
+             aria-describedby="profile-description">
+      </div>
+    </header>
+
+    <main id="main-content">
+      <section id="content-en" lang="en">
+        <div class="cyber-terminal">
+          <div class="terminal-header">
+            > SOCIAL_ACCESS // TWOP0INTFIVE // VERSION 2.5.0
+          </div>
+          <div class="terminal-links">
+            <div class="terminal-column">
+              <a href="https://www.twop0intfive.xyz/contact.html" class="command-line contact" rel="me">
+                ACCESS_CONTACT_PORTAL
+              </a>
+              <a href="https://elbatey.twop0intfive.xyz" class="command-line garden" rel="me">
+                LAUNCH_DIGITAL_GARDEN
+              </a>
+              <a href="https://corteximplant.com/@twop0intfive" class="command-line mastodon" rel="me">
+                CONNECT_MASTODON_INSTANCE
+              </a>
+              <a href="https://bsky.app/profile/twop0intfive.xyz" class="command-line bluesky" rel="me">
+                INIT_BLUESKY_PROTOCOL
+              </a>
+              <a href="https://loops.video/@twop0intfive" class="command-line loops" rel="me">
+                ACTIVATE_LOOP_STREAM
+              </a>
+            </div>
+
+            <div class="terminal-column">
+              <a href="https://www.xiaohongshu.com/user/profile/67859e03000000000801edf1" 
+                 class="command-line chinese" 
+                 rel="me">
+                 RED_BOOK_ACCESS #小红书
+              </a>
+              <a href="https://www.youtube.com/twop0intfive" class="command-line youtube" rel="me">
+                OPEN_VIDEO_FEED
+              </a>
+              <a href="https://tiktok.com/@twop0intfive_" class="command-line tiktok" rel="me">
+                START_SHORTFORM_STREAM
+              </a>
+              <a href="https://instagram.com/el.pittsboricua" class="command-line instagram" rel="me">
+                ENABLE_IMAGE_SHARING
+              </a>
+              <a href="https://pixelfed.social/twop0intfive" class="command-line pixelfed" rel="me">
+                ACCESS_PHOTO_ARCHIVE
+              </a>
+              <a href="https://soundcloud.com/twop0intfive" class="command-line soundcloud" rel="me">
+                INIT_AUDIO_STREAM
+              </a>
+              <a href="https://music.apple.com/profile/twop0intfive" class="command-line applemusic" rel="me">
+                Music
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="content-es" lang="es" style="display: none;">
+        <div class="cyber-terminal">
+          <div class="terminal-header">
+            > ACCESO_SOCIAL // TWOP0INTFIVE // VERSIÓN 2.5.0
+          </div>
+          <div class="terminal-links">
+            <div class="terminal-column">
+              <a href="https://www.twop0intfive.xyz/contact.html" class="command-line contact" rel="me">
+                ACCEDER_PORTAL_CONTACTO
+              </a>
+              <a href="https://elbatey.twop0intfive.xyz" class="command-line garden" rel="me">
+                INICIAR_JARDÍN_DIGITAL
+              </a>
+              <a href="https://corteximplant.com/@twop0intfive" class="command-line mastodon" rel="me">
+                CONECTAR_INSTANCIA_MASTODON
+              </a>
+              <a href="https://bsky.app/profile/twop0intfive.xyz" class="command-line bluesky" rel="me">
+                INICIAR_PROTOCOLO_BLUESKY
+              </a>
+              <a href="https://loops.video/@twop0intfive" class="command-line loops" rel="me">
+                ACTIVAR_STREAM_LOOPS
+              </a>
+            </div>
+
+            <div class="terminal-column">
+              <a href="https://www.xiaohongshu.com/user/profile/67859e03000000000801edf1" 
+                 class="command-line chinese" 
+                 rel="me">
+                 ACCESO_LIBRO_ROJO #小红书
+              </a>
+              <a href="https://www.youtube.com/twop0intfive" class="command-line youtube" rel="me">
+                ABRIR_TRANSMISIÓN_VIDEO
+              </a>
+              <a href="https://tiktok.com/@twop0intfive_" class="command-line tiktok" rel="me">
+                INICIAR_STREAM_CORTO
+              </a>
+              <a href="https://instagram.com/el.pittsboricua" class="command-line instagram" rel="me">
+                ACTIVAR_COMPARTIR_IMAGENES
+              </a>
+              <a href="https://pixelfed.social/twop0intfive" class="command-line pixelfed" rel="me">
+                ACCEDER_ARCHIVO_FOTOS
+              </a>
+              <a href="https://soundcloud.com/twop0intfive" class="command-line soundcloud" rel="me">
+                INICIAR_STREAM_AUDIO
+              </a>
+              <a href="https://music.apple.com/profile/twop0intfive" class="command-line applemusic" rel="me">
+                Music
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <img src="https://counter.datakra.sh/twop0intfive.png" alt="Hit Counter" style="display: block; margin: 0 auto;">
+    </footer>
+
+    <div id="language-text" class="small-text">
+      <p id="text-en" style="display: none;">Views and opinions expressed via my Internet presence are solely my own and do not reflect the position of, nor imply my position on, any past, present, or future employer or affiliated organization.</p>
+      <p id="text-es" style="display: none;">Las opiniones y puntos de vista expresados ​​a través de mi presencia en Internet son exclusivamente míos y no reflejan ni implican la posición de ningún empleador u organización afiliada pasada, presente o futura, ni a la mía sobre cual.</p>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const userLang = navigator.language || navigator.userLanguage;
+      
+      if (userLang.startsWith('es')) {
+        document.getElementById('content-en').style.display = 'none';
+        document.getElementById('content-es').style.display = 'block';
+        document.getElementById('text-es').style.display = 'block';
+        document.documentElement.lang = 'es';
+      } else {
+        document.getElementById('content-en').style.display = 'block';
+        document.getElementById('content-es').style.display = 'none';
+        document.getElementById('text-en').style.display = 'block';
+        document.documentElement.lang = 'en';
+      }
+
+      document.querySelectorAll('.command-line.chinese').forEach(link => {
+        link.addEventListener('mouseenter', () => {
+          link.style.textShadow = '0 0 10px var(--xiaohongshu)';
+        });
+        link.addEventListener('mouseleave', () => {
+          link.style.textShadow = 'none';
+        });
+      });
+    });
+  </script>
+</body>
+</html>
