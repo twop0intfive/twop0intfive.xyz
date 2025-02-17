@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="cyber-tropical" style="color-scheme: dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="description" content="𝘁𝘄𝗼𝗽𝟬𝗶𝗻𝘁𝗳𝗶𝘃𝗲の物語 cyber-tropical digital portal">
+  <title>𝘁𝘄𝗼𝗽𝟬𝗶𝗻𝘁𝗳𝗶𝘃𝗲の物語.xyz - Terminal Interface</title>
+  <style>
+    :root {
+      --base: #0a0a12;
+      --primary: #00ff87;
+      --secondary: #ff0055;
+      --accent: #00f3ff;
+      --text: #00ff00;
+      --content-size: clamp(300px, 80vmin, 800px);
+      --chinese-red: #ff2740;
+    }
+
+    body {
+      margin: 0;
+      background: var(--base);
+      color: var(--text);
+      font-family: 'Courier New', monospace;
+      min-height: 100vh;
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+      place-items: center;
+      overflow-x: hidden;
+      line-height: 1.4;
+    }
+
+    .profile-container {
+      display: flex;
+      justify-content: center;
+      width: 100%;
+      margin: 3rem 0;
+    }
+
+    .profile-picture {
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      border: 3px solid var(--primary);
+      box-shadow: 0 0 20px var(--primary);
+      margin: 0 auto;
+      display: block;
+    }
+
+    .cyber-terminal {
+      background: rgba(0, 0, 0, 0.8);
+      border: 2px solid var(--primary);
+      padding: 2rem;
+      width: var(--content-size);
+      max-width: 90vw;
+      margin: 2rem auto;
+      box-shadow: 0 0 30px rgba(0, 255, 135, 0.2);
+    }
+
+    .terminal-header {
+      color: var(--primary);
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
+      position: relative;
+      animation: terminal-glitch 2s infinite;
+      text-align: center;
+    }
+
+    .terminal-links {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .command-line {
+      position: relative;
+      padding: 1rem;
+      background: rgba(0, 0, 0, 0.5);
+      border: 1px solid rgba(0, 255, 135, 0.3);
+      cursor: pointer;
+      transition: all 0.3s ease;
+      overflow: hidden;
+      text-align: left;
+    }
+
+    .command-line::before {
+      content: '>';
+      color: var(--primary);
+      margin-right: 1rem;
+    }
+
+    .command-line:hover {
+      background: rgba(0, 255, 135, 0.1);
+      box-shadow: 0 0 20px rgba(0, 255, 135, 0.3);
+      transform: translateX(10px);
+    }
+
+    /* Chinese Cyberpunk Styling */
+    .command-line.chinese {
+      border-color: var(--chinese-red);
+      background: rgba(255,39,64,0.1);
+    }
+
+    .command-line.chinese::before {
+      content: '🈯';
+      color: var(--chinese-red);
+    }
+
+    .command-line.chinese:hover {
+      box-shadow: 0 0 25px var(--chinese-red);
+    }
+
+    .small-text {
+      text-align: center;
+      width: 100%;
+      max-width: 600px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+      font-size: 0.7rem;
+    }
+
+    @keyframes terminal-glitch {
+      0% { text-shadow: 0 0 10px var(--primary); }
+      50% { text-shadow: 2px 0 10px var(--secondary), -2px 0 10px var(--accent); }
+      100% { text-shadow: 0 0 10px var(--primary); }
+    }
+
+    @media (max-width: 768px) {
+      .terminal-links {
+        grid-template-columns: 1fr;
+      }
+      .profile-picture {
+        width: 140px;
+        height: 140px;
+      }
+    }
+  </style>
+</head>
+<body class="crt">
+  <div class="scanline"></div>
+  
+  <div class="aspect-container">
+    <header class="header">
+      <div class="profile-container">
+        <img src="images/twop0intfive.jpeg" 
+             alt="Profile picture" 
+             class="profile-picture"
+             aria-describedby="profile-description">
+      </div>
+    </header>
+
+    <main id="main-content">
+      <section id="content-en" lang="en">
+        <div class="cyber-terminal">
+          <div class="terminal-header">
+            > SOCIAL_ACCESS // TWOP0INTFIVE // VERSION 2.5.0
+          </div>
+          <div class="terminal-links">
+            <div class="terminal-column">
+              <a href="https://www.twop0intfive.xyz/contact.html" class="command-line" rel="me">
+                ACCESS_CONTACT_PORTAL
+              </a>
+              <a href="https://elbatey.twop0intfive.xyz" class="command-line" rel="me">
+                LAUNCH_DIGITAL_GARDEN
+              </a>
+              <a href="https://corteximplant.com/@twop0intfive" class="command-line" rel="me">
+                CONNECT_MASTODON_INSTANCE
+              </a>
+              <a href="https://bsky.app/profile/twop0intfive.xyz" class="command-line" rel="me">
+                INIT_BLUESKY_PROTOCOL
+              </a>
+              <a href="https://loops.video/@twop0intfive" class="command-line" rel="me">
+                ACTIVATE_LOOP_STREAM
+              </a>
+            </div>
+
+            <div class="terminal-column">
+              <a href="https://www.xiaohongshu.com/user/profile/67859e03000000000801edf1" 
+                 class="command-line chinese" 
+                 rel="me">
+                 RED_BOOK_ACCESS #小红书
+              </a>
+              <a href="https://www.youtube.com/twop0intfive" class="command-line" rel="me">
+                OPEN_VIDEO_FEED
+              </a>
+              <a href="https://tiktok.com/@twop0intfive_" class="command-line" rel="me">
+                START_SHORTFORM_STREAM
+              </a>
+              <a href="https://instagram.com/el.pittsboricua" class="command-line" rel="me">
+                ENABLE_IMAGE_SHARING
+              </a>
+              <a href="https://pixelfed.social/twop0intfive" class="command-line" rel="me">
+                ACCESS_PHOTO_ARCHIVE
+              </a>
+              <a href="https://soundcloud.com/twop0intfive" class="command-line" rel="me">
+                INIT_AUDIO_STREAM
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="content-es" lang="es" style="display: none;">
+        <div class="cyber-terminal">
+          <div class="terminal-header">
+            > ACCESO_SOCIAL // TWOP0INTFIVE // VERSIÓN 2.5.0
+          </div>
+          <div class="terminal-links">
+            <div class="terminal-column">
+              <a href="https://www.twop0intfive.xyz/contact.html" class="command-line" rel="me">
+                ACCEDER_PORTAL_CONTACTO
+              </a>
+              <a href="https://elbatey.twop0intfive.xyz" class="command-line" rel="me">
+                INICIAR_JARDÍN_DIGITAL
+              </a>
+              <a href="https://corteximplant.com/@twop0intfive" class="command-line" rel="me">
+                CONECTAR_INSTANCIA_MASTODON
+              </a>
+              <a href="https://bsky.app/profile/twop0intfive.xyz" class="command-line" rel="me">
+                INICIAR_PROTOCOLO_BLUESKY
+              </a>
+              <a href="https://loops.video/@twop0intfive" class="command-line" rel="me">
+                ACTIVAR_STREAM_LOOPS
+              </a>
+            </div>
+
+            <div class="terminal-column">
+              <a href="https://www.xiaohongshu.com/user/profile/67859e03000000000801edf1" 
+                 class="command-line chinese" 
+                 rel="me">
+                 ACCESO_LIBRO_ROJO #小红书
+              </a>
+              <a href="https://www.youtube.com/twop0intfive" class="command-line" rel="me">
+                ABRIR_TRANSMISIÓN_VIDEO
+              </a>
+              <a href="https://tiktok.com/@twop0intfive_" class="command-line" rel="me">
+                INICIAR_STREAM_CORTO
+              </a>
+              <a href="https://instagram.com/el.pittsboricua" class="command-line" rel="me">
+                ACTIVAR_COMPARTIR_IMAGENES
+              </a>
+              <a href="https://pixelfed.social/twop0intfive" class="command-line" rel="me">
+                ACCEDER_ARCHIVO_FOTOS
+              </a>
+              <a href="https://soundcloud.com/twop0intfive" class="command-line" rel="me">
+                INICIAR_STREAM_AUDIO
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <img src="https://counter.datakra.sh/twop0intfive.png" alt="Hit Counter" style="display: block; margin: 0 auto;">
+    </footer>
+
+    <div id="language-text" class="small-text">
+      <p id="text-en" style="display: none;">Views and opinions expressed via my Internet presence are solely my own and do not reflect the position of, nor imply my position on, any past, present, or future employer or affiliated organization.</p>
+      <p id="text-es" style="display: none;">Las opiniones y puntos de vista expresados ​​a través de mi presencia en Internet son exclusivamente míos y no reflejan ni implican la posición de ningún empleador u organización afiliada pasada, presente o futura, ni a la mía sobre cual.</p>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const userLang = navigator.language || navigator.userLanguage;
+      
+      if (userLang.startsWith('es')) {
+        document.getElementById('content-en').style.display = 'none';
+        document.getElementById('content-es').style.display = 'block';
+        document.getElementById('text-es').style.display = 'block';
+        document.documentElement.lang = 'es';
+      } else {
+        document.getElementById('content-en').style.display = 'block';
+        document.getElementById('content-es').style.display = 'none';
+        document.getElementById('text-en').style.display = 'block';
+        document.documentElement.lang = 'en';
+      }
+
+      // Add Chinese platform hover effect
+      document.querySelectorAll('.command-line.chinese').forEach(link => {
+        link.addEventListener('mouseenter', () => {
+          link.style.textShadow = '0 0 10px var(--chinese-red)';
+        });
+        link.addEventListener('mouseleave', () => {
+          link.style.textShadow = 'none';
+        });
+      });
+    });
+  </script>
+</body>
+</html>
